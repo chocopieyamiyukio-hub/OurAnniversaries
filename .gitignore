@@ -1,0 +1,6 @@
+# Temporary files
+site.zip
+*.exe
+*.log
+.agents/
+node_modules/
