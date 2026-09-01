@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A cinematic archive celebrating our timeless love story — 1 Year & 1 Month Anniversary." />
+  <meta name="description" content="Our Forever Sanctuary — A timeless digital keepsake celebrating our love story today, tomorrow, and always." />
   <meta name="theme-color" content="#080607" />
-  <title>THE ARCHIVE : US — 1 Year & 1 Month</title>
+  <title>ARCHIVE OF US — Our Forever Sanctuary</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -103,6 +103,17 @@
     @keyframes sparkFade {
       0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
       100% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+    }
+
+    /* Floating Heart Confetti */
+    .heart-confetti {
+      position: fixed; pointer-events: none; z-index: 99999; font-size: 1.5rem;
+      animation: floatHeart 1.4s ease-out forwards;
+    }
+    @keyframes floatHeart {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5) rotate(0deg); }
+      50% { opacity: 0.9; transform: translate(calc(-50% + 20px), calc(-50% - 60px)) scale(1.2) rotate(15deg); }
+      100% { opacity: 0; transform: translate(calc(-50% - 10px), calc(-50% - 120px)) scale(0.8) rotate(-15deg); }
     }
 
     /* ==========================================================================
@@ -349,25 +360,26 @@
     }
     .hero-img-wrap img { filter: brightness(0.92) contrast(1.06); transform: scale(1.15); will-change: transform; }
 
-    /* --- 2. ANNIVERSARY MILESTONE & LIVE TICKER --- */
+    /* --- 2. FOREVER MILESTONE & LIVE TICKER --- */
     .milestone-section {
       text-align: center; border-top: 1px solid var(--line-delicate); border-bottom: 1px solid var(--line-delicate);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, rgba(8, 6, 7, 0) 75%);
     }
-    .mile-numbers {
-      display: flex; align-items: center; justify-content: center; gap: clamp(1rem, 3vw, 2.5rem);
-      font-family: var(--font-serif); font-size: clamp(4.5rem, 13vw, 10.5rem); line-height: 1; font-weight: 300;
+    
+    .forever-hero-banner {
+      font-family: var(--font-serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.1; font-weight: 300; font-style: italic;
+      background: linear-gradient(135deg, var(--text-primary), var(--accent-gold-light), var(--accent-rose));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
     }
-    .mile-divider { color: var(--accent-gold); font-weight: 300; font-style: italic; font-size: clamp(3.5rem, 10vw, 8.5rem); }
-    .mile-labels {
-      display: flex; justify-content: center; gap: clamp(6rem, 18vw, 14rem);
-      font-size: clamp(0.7rem, 1vw, 0.85rem); text-transform: uppercase; letter-spacing: 0.5em; margin-top: 1.5rem; color: var(--text-muted);
+    .forever-hero-sub {
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--accent-gold);
     }
 
     /* Live Real-Time Counter Box */
     .live-counter-container {
-      margin-top: clamp(3rem, 6vh, 5rem);
+      margin-top: clamp(2.5rem, 5vh, 4rem);
       padding: clamp(1.8rem, 3.5vw, 2.8rem);
       background: var(--bg-card);
       border: 1px solid var(--line-gold);
@@ -848,15 +860,15 @@
   <div id="preloader" class="preloader">
     <div class="preloader-monogram">US</div>
     <span class="preloader-text">Archive of Us</span>
-    <span class="preloader-sub">One Year & One Month Milestone</span>
+    <span class="preloader-sub">Our Forever Sanctuary</span>
   </div>
 
   <!-- Gatekeeper Password Screen -->
   <div id="gatekeeper" class="gatekeeper" role="dialog" aria-modal="true" aria-labelledby="gk-title">
     <div class="gk-card">
-      <span class="gk-badge">Private Archive</span>
+      <span class="gk-badge">Private Sanctuary</span>
       <h2 id="gk-title" class="gk-title">The Velvet Room</h2>
-      <p class="gk-desc">Enter our special anniversary code to unlock the private memories within.</p>
+      <p class="gk-desc">Enter our special milestone code to unlock the private memories within.</p>
       
       <div class="gk-input-wrapper">
         <label for="gk-input" class="sr-only">Enter Passcode</label>
@@ -888,12 +900,12 @@
 
     <nav class="nav-links" id="navLinks" aria-label="Primary Navigation">
       <a href="#home" class="nav-link active">Cover</a>
-      <a href="#milestone" class="nav-link">Milestone</a>
+      <a href="#milestone" class="nav-link">Our Clock</a>
       <a href="#journey" class="nav-link">Our Journey</a>
       <a href="#gallery" class="nav-link">The Mosaic</a>
       <a href="#reasons" class="nav-link">Love Notes</a>
       <a href="#bucketlist" class="nav-link">Bucket List</a>
-      <a href="#epilogue" class="nav-link">Epilogue</a>
+      <a href="#epilogue" class="nav-link">Letter</a>
     </nav>
   </header>
 
@@ -901,12 +913,12 @@
     <!-- 1. HERO SECTION -->
     <section class="hero section-padding" id="home" aria-label="Introduction">
       <div class="hero-text">
-        <span class="sh-eyebrow text-reveal">A Timeless Record</span>
-        <h1 class="hero-title text-reveal">An Eternity<br><i>In A Moment.</i></h1>
-        <p class="hero-desc text-reveal">A meticulously woven tapestry of our quietest mornings, our brightest laughter, and the beautiful architecture of a love that feels like coming home.</p>
+        <span class="sh-eyebrow text-reveal">Our Timeless Story</span>
+        <h1 class="hero-title text-reveal">An Eternity<br><i>In Every Moment.</i></h1>
+        <p class="hero-desc text-reveal">A meticulously woven tapestry of our quietest mornings, our brightest laughter, and the beautiful architecture of a love that feels like coming home — today, tomorrow, and through all the years ahead.</p>
         
         <div class="hero-cta-group text-reveal">
-          <a href="#journey" class="hero-primary-btn">Explore Journey &darr;</a>
+          <a href="#journey" class="hero-primary-btn">Explore Our Journey &darr;</a>
           <a href="#gallery" class="hero-secondary-btn">View 20 Memories</a>
         </div>
       </div>
@@ -918,25 +930,18 @@
       </div>
     </section>
 
-    <!-- 2. ANNIVERSARY MILESTONE & LIVE TICKER -->
+    <!-- 2. FOREVER MILESTONE & LIVE TICKER -->
     <section id="milestone" class="milestone-section section-padding" aria-labelledby="milestone-title">
-      <span id="milestone-title" class="sh-eyebrow text-reveal">The Milestone</span>
+      <span id="milestone-title" class="sh-eyebrow text-reveal">Our Living Journey</span>
       
-      <div class="mile-numbers text-reveal" aria-hidden="true">
-        <span>01</span>
-        <span class="mile-divider">/</span>
-        <span>01</span>
-      </div>
-      <div class="mile-labels text-reveal" aria-hidden="true">
-        <span>Year</span>
-        <span>Month</span>
-      </div>
+      <h2 class="forever-hero-banner text-reveal">Every Second With You</h2>
+      <p class="forever-hero-sub text-reveal">A Lifetime of Choosing You Every Single Day</p>
 
       <!-- Live Dynamic Real-Time Counter -->
       <div class="live-counter-container text-reveal">
         <div class="live-counter-header">
           <span class="live-pulse-dot"></span>
-          <span>Time Spent In Love (Live Counter)</span>
+          <span>Time Spent In Love (Live Real-Time Counter)</span>
         </div>
         <div class="live-grid" id="liveGrid">
           <div class="live-unit">
@@ -983,7 +988,7 @@
       </div>
       
       <p class="mile-text text-reveal">
-        Thirteen months of discovering the quiet, profound poetry of us. Thirteen months of shared silences that speak volumes, effortless laughter that fills the room, and the beautiful, conscious choice of <strong>choosing each other every single day.</strong> Happy 1 Year and 1 Month Anniversary. Time does not just pass with you; it deepens, making every memory more luminous than the last.
+        Every single day with you is a new chapter in our favorite story. From our quiet silences to our happiest celebrations, <strong>choosing you remains the easiest, most beautiful decision of my life.</strong> Time does not just pass with you; it deepens, turning every fleeting second into an eternal treasure.
       </p>
     </section>
 
@@ -1039,9 +1044,9 @@
         <article class="timeline-item text-reveal">
           <div class="timeline-node"></div>
           <div class="timeline-content">
-            <span class="tl-tag">Chapter 04 &bull; 1 Year & 1 Month</span>
-            <h3 class="tl-title">Today & Forever</h3>
-            <p class="tl-desc">Thirteen months of unconditional devotion, growing together, and holding onto each other tighter with every passing day. The prologue to an eternity.</p>
+            <span class="tl-tag">Chapter 04 &bull; Growing Together</span>
+            <h3 class="tl-title">Today, Tomorrow & Beyond</h3>
+            <p class="tl-desc">Unconditional devotion, holding onto each other tighter with every passing season, and building a sanctuary of peace, laughter, and lifelong dreams.</p>
           </div>
           <div class="timeline-media">
             <img src="memory1.jpg" alt="Today and Forever" loading="lazy" />
@@ -1101,7 +1106,7 @@
             <img src="memory10.jpg" alt="Memory 10" loading="lazy" width="400" height="400">
             <span class="item-badge">10</span>
           </div>
-          <div class="gallery-item item-11 text-reveal" role="listitem" tabindex="0" data-index="11" data-src="memory11.jpg" data-caption="Side by side, exactly where we belong.">
+          <div class="gallery-item item-11 text-reveal" role="listitem" tabindex="0" data-index="10" data-src="memory11.jpg" data-caption="Side by side, exactly where we belong.">
             <img src="memory11.jpg" alt="Memory 11" loading="lazy" width="400" height="400">
             <span class="item-badge">11</span>
           </div>
@@ -1252,47 +1257,14 @@
     <!-- 6. OUR BUCKET LIST & FUTURE DREAMS -->
     <section id="bucketlist" class="bucketlist-section section-padding" aria-labelledby="bucketlist-title">
       <header class="section-header">
-        <span class="sh-eyebrow text-reveal">Future Dreams</span>
+        <span class="sh-eyebrow text-reveal">Living Promises</span>
         <h2 id="bucketlist-title" class="sh-title text-reveal">Our Bucket List</h2>
-        <p class="sh-desc text-reveal">Promises to each other and adventures waiting to be unlocked in our journey ahead.</p>
+        <p class="sh-desc text-reveal">Adventures, dreams, and promises waiting to be unlocked throughout our lifetime together.</p>
       </header>
 
       <div class="bucketlist-container text-reveal">
         <div class="bucket-list" id="bucketList">
-          <div class="bucket-item checked" data-id="1">
-            <div class="bucket-checkbox">
-              <svg viewBox="0 0 24 24"><polygon points="9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59 9 16.17"></polygon></svg>
-            </div>
-            <span class="bucket-text">Spend 1 Year & 1 Month falling deeper in love every single day</span>
-          </div>
-
-          <div class="bucket-item" data-id="2">
-            <div class="bucket-checkbox">
-              <svg viewBox="0 0 24 24"><polygon points="9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59 9 16.17"></polygon></svg>
-            </div>
-            <span class="bucket-text">Travel somewhere new and watch the sunset hand-in-hand</span>
-          </div>
-
-          <div class="bucket-item" data-id="3">
-            <div class="bucket-checkbox">
-              <svg viewBox="0 0 24 24"><polygon points="9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59 9 16.17"></polygon></svg>
-            </div>
-            <span class="bucket-text">Cook an elaborate candlelit dinner together with our favorite music</span>
-          </div>
-
-          <div class="bucket-item" data-id="4">
-            <div class="bucket-checkbox">
-              <svg viewBox="0 0 24 24"><polygon points="9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59 9 16.17"></polygon></svg>
-            </div>
-            <span class="bucket-text">Have a spontaneous midnight road trip to stargaze in quiet peace</span>
-          </div>
-
-          <div class="bucket-item" data-id="5">
-            <div class="bucket-checkbox">
-              <svg viewBox="0 0 24 24"><polygon points="9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59 9 16.17"></polygon></svg>
-            </div>
-            <span class="bucket-text">Grow old together, still holding hands with that same spark in our eyes</span>
-          </div>
+          <!-- Dynamically loaded / interactive -->
         </div>
 
         <form class="add-wish-box" id="addWishForm">
@@ -1328,7 +1300,7 @@
           You are the person I want to share my every silence with, the hand I will reach for through every changing season, and the heart I will fiercely protect with every version of myself. You are my calm in the chaos, my greatest adventure, and my absolute favorite miracle.
         </p>
         <p class="letter-paragraph">
-          Thank you for making my life a masterpiece. <strong>I love you, eternally.</strong>
+          Thank you for making my life a masterpiece. <strong>I love you, eternally — yesterday, today, tomorrow, and through every lifetime.</strong>
         </p>
       </div>
       
@@ -1340,7 +1312,7 @@
         <span class="sign-off-sub text-reveal">Forever & Always</span>
       </div>
 
-      <p class="copyright">Crafted with infinite love &bull; Celebrating 1 Year and 1 Month Together</p>
+      <p class="copyright">Our Forever Archive &bull; Handcrafted with Unconditional Love</p>
     </div>
   </footer>
 
@@ -1424,6 +1396,19 @@
       spark.style.top = y + 'px';
       document.body.appendChild(spark);
       setTimeout(() => spark.remove(), 700);
+    }
+
+    function spawnHeartConfetti(x, y) {
+      const hearts = ['💖', '✨', '💕', '🌸', '❤️', '🌟'];
+      for (let i = 0; i < 6; i++) {
+        const h = document.createElement('div');
+        h.className = 'heart-confetti';
+        h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        h.style.left = (x + (Math.random() - 0.5) * 60) + 'px';
+        h.style.top = (y + (Math.random() - 0.5) * 40) + 'px';
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 1400);
+      }
     }
 
     // ==========================================================================
@@ -1611,7 +1596,7 @@
     });
 
     // ==========================================================================
-    // 5. LIVE TOGETHER COUNTER & MILESTONES
+    // 5. LIVE TOGETHER COUNTER & EVERGREEN CALCULATIONS
     // ==========================================================================
     const anniversaryStartDate = new Date("2025-06-14T00:00:00");
 
@@ -1633,8 +1618,9 @@
         months += 12;
       }
 
-      if (years < 1) years = 1;
-      if (months < 1 && years === 1) months = 1;
+      if (years < 0) years = 0;
+      if (months < 0) months = 0;
+      if (days < 0) days = 0;
 
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
@@ -1648,8 +1634,8 @@
       document.getElementById('liveSeconds').textContent = seconds;
 
       const totalMs = Math.max(0, now - anniversaryStartDate);
-      const totalDays = Math.floor(totalMs / (1000 * 60 * 60 * 24)) || 395;
-      const totalHours = Math.floor(totalMs / (1000 * 60 * 60)) || 9480;
+      const totalDays = Math.floor(totalMs / (1000 * 60 * 60 * 24)) || 1;
+      const totalHours = Math.floor(totalMs / (1000 * 60 * 60)) || 24;
 
       document.getElementById('badgeDays').textContent = totalDays.toLocaleString() + "+";
       document.getElementById('badgeHours').textContent = totalHours.toLocaleString() + "+";
@@ -1791,7 +1777,7 @@
 
     const galleryData = Array.from(galleryItems).map(item => ({
       src: item.getAttribute('data-src'),
-      caption: item.getAttribute('data-caption') || "Cherished Memory",
+      caption: item.getAttribute('data-caption') || "Cherished Forever Memory",
       index: parseInt(item.getAttribute('data-index'), 10)
     }));
 
@@ -1898,16 +1884,69 @@
     });
 
     // ==========================================================================
-    // 10. INTERACTIVE BUCKET LIST
+    // 10. INTERACTIVE BUCKET LIST (PERSISTED IN LOCALSTORAGE)
     // ==========================================================================
-    const bucketList = document.getElementById('bucketList');
+    const defaultBucketItems = [
+      { id: '1', text: 'Fall deeper in love every single morning and never stop choosing each other', checked: true },
+      { id: '2', text: 'Travel somewhere beautiful across the world and watch the sunrise hand-in-hand', checked: false },
+      { id: '3', text: 'Cook an elaborate candlelit dinner together with our favorite songs playing softly', checked: false },
+      { id: '4', text: 'Have a spontaneous midnight road trip to stargaze in quiet peace and wrap in warm blankets', checked: false },
+      { id: '5', text: 'Build our dream cozy home filled with plants, warmth, laughter, and endless memories', checked: false },
+      { id: '6', text: 'Grow old together, still holding hands with that exact same spark in our eyes', checked: false }
+    ];
+
+    const bucketListEl = document.getElementById('bucketList');
     const addWishForm = document.getElementById('addWishForm');
     const wishInput = document.getElementById('wishInput');
 
-    bucketList.addEventListener('click', (e) => {
-      const item = e.target.closest('.bucket-item');
-      if (item) {
-        item.classList.toggle('checked');
+    function getSavedBucketList() {
+      try {
+        const saved = localStorage.getItem('archive_bucket_list');
+        return saved ? JSON.parse(saved) : defaultBucketItems;
+      } catch {
+        return defaultBucketItems;
+      }
+    }
+
+    function saveBucketList(items) {
+      try {
+        localStorage.setItem('archive_bucket_list', JSON.stringify(items));
+      } catch {}
+    }
+
+    let currentBucketItems = getSavedBucketList();
+
+    function renderBucketList() {
+      bucketListEl.innerHTML = '';
+      currentBucketItems.forEach(item => {
+        const div = document.createElement('div');
+        div.className = `bucket-item ${item.checked ? 'checked' : ''}`;
+        div.setAttribute('data-id', item.id);
+        div.innerHTML = `
+          <div class="bucket-checkbox">
+            <svg viewBox="0 0 24 24"><polygon points="9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59 9 16.17"></polygon></svg>
+          </div>
+          <span class="bucket-text">${item.text}</span>
+        `;
+        bucketListEl.appendChild(div);
+      });
+    }
+
+    renderBucketList();
+
+    bucketListEl.addEventListener('click', (e) => {
+      const itemEl = e.target.closest('.bucket-item');
+      if (itemEl) {
+        const id = itemEl.getAttribute('data-id');
+        const found = currentBucketItems.find(i => i.id === id);
+        if (found) {
+          found.checked = !found.checked;
+          if (found.checked) {
+            spawnHeartConfetti(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2);
+          }
+          saveBucketList(currentBucketItems);
+          renderBucketList();
+        }
       }
     });
 
@@ -1916,20 +1955,19 @@
       const val = wishInput.value.trim();
       if (!val) return;
 
-      const newItem = document.createElement('div');
-      newItem.className = 'bucket-item';
-      newItem.innerHTML = `
-        <div class="bucket-checkbox">
-          <svg viewBox="0 0 24 24"><polygon points="9 16.17 4.83 12 3.41 13.41 9 19 21 7 19.59 5.59 9 16.17"></polygon></svg>
-        </div>
-        <span class="bucket-text">${val}</span>
-      `;
-      bucketList.appendChild(newItem);
+      currentBucketItems.push({
+        id: String(Date.now()),
+        text: val,
+        checked: false
+      });
+      saveBucketList(currentBucketItems);
+      renderBucketList();
       wishInput.value = '';
+      spawnHeartConfetti(window.innerWidth / 2, window.innerHeight / 2);
     });
 
     // ==========================================================================
-    // 11. SECRET LOVE CAPSULES
+    // 11. SECRET LOVE CAPSULES (EVERGREEN LOVE NOTES)
     // ==========================================================================
     const loveQuotes = [
       "“In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.”",
@@ -1937,18 +1975,23 @@
       "“You are my today, my tomorrow, and all the tomorrows that will ever come.”",
       "“Loving you is the easiest, most effortless, and most beautiful choice I make every single morning.”",
       "“With you, home isn't a place — it's the feeling of holding your hand.”",
-      "“Thank you for being my peace in the chaos and the greatest adventure of my life.”"
+      "“Thank you for being my peace in the chaos, my sanctuary, and the greatest adventure of my life.”",
+      "“Whatever our souls are made of, yours and mine are carved from the exact same light.”",
+      "“I look at you and I see the rest of my life in front of my eyes.”",
+      "“You are my favorite notification, my favorite thought, and my favorite forever.”"
     ];
 
     let quoteIndex = 0;
     const capsuleQuote = document.getElementById('capsuleQuote');
     const capsuleBtn = document.getElementById('capsuleBtn');
 
-    capsuleBtn.addEventListener('click', () => {
+    capsuleBtn.addEventListener('click', (e) => {
       quoteIndex = (quoteIndex + 1) % loveQuotes.length;
       capsuleQuote.style.opacity = '0';
       capsuleQuote.style.transform = 'translateY(10px)';
       capsuleQuote.style.transition = 'all 0.3s ease';
+
+      spawnHeartConfetti(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2);
 
       setTimeout(() => {
         capsuleQuote.innerHTML = loveQuotes[quoteIndex];
