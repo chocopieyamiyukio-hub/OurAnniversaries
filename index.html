@@ -62,7 +62,61 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       line-height: 1.65;
+      cursor: none; /* Hide default cursor */
     }
+    
+    /* Aesthetic Custom Cursor */
+    .cursor-dot {
+      width: 6px; height: 6px; background-color: var(--accent-aurora); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 999999;
+      transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s;
+      box-shadow: 0 0 10px var(--accent-aurora-glow);
+    }
+    .cursor-ring {
+      width: 32px; height: 32px; border: 1.5px solid rgba(92, 225, 230, 0.5); border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 999998;
+      transform: translate(-50%, -50%); transition: transform 0.1s ease-out, width 0.3s, height 0.3s, background-color 0.3s;
+    }
+    /* Cursor hover states handled via JS class additions */
+    body.hovering .cursor-dot { width: 12px; height: 12px; background-color: var(--accent-purple); box-shadow: 0 0 15px var(--accent-purple); }
+    body.hovering .cursor-ring { width: 50px; height: 50px; background-color: rgba(106, 13, 173, 0.1); border-color: rgba(106, 13, 173, 0.8); }
+    
+    @media (max-width: 900px) { .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } }
+
+    /* Ambient Fireflies / Starfield */
+    .ambient-fireflies { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+    .ambient-fireflies i {
+      position: absolute; display: block; border-radius: 50%;
+      background: radial-gradient(circle, #fff 0%, rgba(92,225,230,0) 70%);
+      box-shadow: 0 0 10px rgba(92,225,230,0.8);
+      animation: fireflyFloat 15s ease-in-out infinite alternate;
+    }
+    @keyframes fireflyFloat {
+      0% { transform: translateY(0) scale(0.5); opacity: 0; }
+      50% { opacity: 0.6; }
+      100% { transform: translateY(-100px) translateX(20px) scale(1.5); opacity: 0; }
+    }
+    /* Randomize some fireflies sizes, delays, positions */
+    .ambient-fireflies i:nth-child(1) { width: 4px; height: 4px; left: 10%; bottom: 10%; animation-duration: 12s; animation-delay: 1s; }
+    .ambient-fireflies i:nth-child(2) { width: 6px; height: 6px; left: 25%; bottom: 20%; animation-duration: 18s; animation-delay: 4s; }
+    .ambient-fireflies i:nth-child(3) { width: 3px; height: 3px; left: 40%; bottom: 15%; animation-duration: 20s; animation-delay: 2s; }
+    .ambient-fireflies i:nth-child(4) { width: 5px; height: 5px; left: 60%; bottom: 30%; animation-duration: 15s; animation-delay: 7s; }
+    .ambient-fireflies i:nth-child(5) { width: 8px; height: 8px; left: 80%; bottom: 25%; animation-duration: 25s; animation-delay: 0s; }
+    .ambient-fireflies i:nth-child(6) { width: 4px; height: 4px; left: 15%; bottom: 60%; animation-duration: 22s; animation-delay: 5s; }
+    .ambient-fireflies i:nth-child(7) { width: 7px; height: 7px; left: 45%; bottom: 70%; animation-duration: 17s; animation-delay: 3s; }
+    .ambient-fireflies i:nth-child(8) { width: 3px; height: 3px; left: 75%; bottom: 50%; animation-duration: 14s; animation-delay: 6s; }
+    .ambient-fireflies i:nth-child(9) { width: 5px; height: 5px; left: 90%; bottom: 80%; animation-duration: 19s; animation-delay: 8s; }
+    .ambient-fireflies i:nth-child(10){ width: 6px; height: 6px; left: 50%; bottom: 40%; animation-duration: 16s; animation-delay: 2.5s; }
+    .ambient-fireflies i:nth-child(11){ width: 4px; height: 4px; left: 5%; bottom: 85%; animation-duration: 21s; animation-delay: 9s; }
+    .ambient-fireflies i:nth-child(12){ width: 5px; height: 5px; left: 35%; bottom: 90%; animation-duration: 23s; animation-delay: 1.5s; }
+    .ambient-fireflies i:nth-child(13){ width: 7px; height: 7px; left: 65%; bottom: 95%; animation-duration: 13s; animation-delay: 4.5s; }
+    .ambient-fireflies i:nth-child(14){ width: 3px; height: 3px; left: 85%; bottom: 15%; animation-duration: 24s; animation-delay: 6.5s; }
+    .ambient-fireflies i:nth-child(15){ width: 8px; height: 8px; left: 55%; bottom: 5%; animation-duration: 26s; animation-delay: 3.5s; }
+    .ambient-fireflies i:nth-child(16){ width: 4px; height: 4px; left: 20%; bottom: 45%; animation-duration: 11s; animation-delay: 8.5s; }
+    .ambient-fireflies i:nth-child(17){ width: 6px; height: 6px; left: 70%; bottom: 65%; animation-duration: 28s; animation-delay: 0.5s; }
+    .ambient-fireflies i:nth-child(18){ width: 3px; height: 3px; left: 30%; bottom: 35%; animation-duration: 15s; animation-delay: 5.5s; }
+    .ambient-fireflies i:nth-child(19){ width: 5px; height: 5px; left: 95%; bottom: 45%; animation-duration: 19s; animation-delay: 7.5s; }
+    .ambient-fireflies i:nth-child(20){ width: 7px; height: 7px; left: 10%; bottom: 95%; animation-duration: 22s; animation-delay: 2.2s; }
 
     img, picture, svg { display: block; width: 100%; height: 100%; object-fit: cover; }
     a, button, input { font: inherit; outline: none; border: none; background: none; color: inherit; text-decoration: none; }
@@ -984,20 +1038,21 @@
       .gallery-item:hover { transform: none; }
     }
     /* ==========================================================================
-       0. ANIMATED NEBULA BACKGROUND
+       0. ANIMATED NEBULA BACKGROUND (AESTHETIC)
        ========================================================================== */
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 20% 30%, #0c0f2b 0%, #1a0f2d 70%, #0c0f2b 100%);
-      animation: nebulaMove 30s linear infinite;
+      content: ''; position: fixed; inset: -50%; width: 200%; height: 200%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(106, 13, 173, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(92, 225, 230, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(20, 16, 30, 1) 0%, rgba(8, 6, 12, 1) 100%);
+      animation: nebulaSpin 60s linear infinite;
       z-index: -2;
     }
-    @keyframes nebulaMove {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 50% 50%; }
-      100% { background-position: 100% 100%; }
+    @keyframes nebulaSpin { 
+      0% { transform: rotate(0deg) scale(1); } 
+      50% { transform: rotate(180deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(1); } 
     }
     /* Ensure content sits above the nebula */
     body > * { position: relative; z-index: 1; }
@@ -1005,6 +1060,15 @@
   </style>
 </head>
 <body>
+  <!-- Aesthetic Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Ambient Fireflies / Starfield -->
+  <div class="ambient-fireflies" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
 
   <!-- Scroll Progress Indicator -->
   <div id="scroll-progress" aria-hidden="true"></div>
@@ -1600,15 +1664,39 @@
     "use strict";
 
     // ==========================================================================
-    // 1. STARLIGHT CURSOR TRAIL
+    // 1. STARLIGHT CURSOR TRAIL & AESTHETIC CURSOR
     // ==========================================================================
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
     let lastSparkTime = 0;
     window.addEventListener('pointermove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      if (cursorDot) cursorDot.style.left = `${mouseX}px`;
+      if (cursorDot) cursorDot.style.top = `${mouseY}px`;
+
       const now = Date.now();
       if (now - lastSparkTime > 50) {
         lastSparkTime = now;
         createSpark(e.clientX, e.clientY);
       }
+    });
+
+    // Smooth cursor ring follow
+    function animateCursorRing() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      if (cursorRing) cursorRing.style.left = `${ringX}px`;
+      if (cursorRing) cursorRing.style.top = `${ringY}px`;
+      requestAnimationFrame(animateCursorRing);
+    }
+    animateCursorRing();
+
+    // Hover state for interactive elements
+    document.querySelectorAll('a, button, .gallery-item, .reason-inner, input, .memory-jar-widget, .jar-graphic').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
     });
 
     function createSpark(x, y) {
@@ -1724,8 +1812,8 @@
         
         if (!prefersReducedMotion) {
           gsap.fromTo(".hero-text .text-reveal", 
-            { y: 40, opacity: 0 }, 
-            { y: 0, opacity: 1, duration: 1.3, stagger: 0.14, ease: "power3.out" }
+            { y: 40, opacity: 0, filter: 'blur(10px)' }, 
+            { y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.3, stagger: 0.14, ease: "power3.out" }
           );
           
           const heroImgWrap = document.querySelector('.hero-img-wrap');
@@ -1995,9 +2083,9 @@
         const textElements = document.querySelectorAll('.text-reveal:not(.hero-text .text-reveal)');
         textElements.forEach(el => {
           gsap.fromTo(el, 
-            { y: 30, opacity: 0 },
+            { y: 30, opacity: 0, filter: 'blur(8px)' },
             { 
-              y: 0, opacity: 1, duration: 1.1, ease: "power2.out",
+              y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.1, ease: "power2.out",
               scrollTrigger: { trigger: el, start: "top 90%" }
             }
           );
