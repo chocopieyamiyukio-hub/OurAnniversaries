@@ -346,7 +346,19 @@
     .audio-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-primary); }
     .audio-artist { font-size: 0.58rem; color: var(--text-muted); letter-spacing: 0.12em; }
     
-    .audio-controls { display: flex; align-items: center; gap: 8px; margin-left: 4px; }
+    .audio-controls { display: flex; align-items: flex-end; gap: 12px; margin-left: 4px; }
+    
+    /* Golden Sound Waves */
+    .audio-visualizer { display: flex; align-items: flex-end; gap: 3px; height: 16px; margin-bottom: 8px; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
+    .audio-widget.playing .audio-visualizer { opacity: 1; }
+    .audio-visualizer .bar { width: 3px; background: var(--accent-aurora); border-radius: 2px; height: 10%; box-shadow: 0 0 5px var(--accent-aurora-glow); }
+    .audio-widget.playing .audio-visualizer .bar { animation: soundWave 0.8s ease-in-out infinite alternate; }
+    .audio-visualizer .bar:nth-child(1) { animation-delay: 0.1s; }
+    .audio-visualizer .bar:nth-child(2) { animation-delay: 0.3s; animation-duration: 0.9s; }
+    .audio-visualizer .bar:nth-child(3) { animation-delay: 0.0s; animation-duration: 1.1s; }
+    .audio-visualizer .bar:nth-child(4) { animation-delay: 0.4s; animation-duration: 0.7s; }
+    .audio-visualizer .bar:nth-child(5) { animation-delay: 0.2s; animation-duration: 1.0s; }
+    @keyframes soundWave { 0% { height: 10%; } 100% { height: 100%; } }
     .audio-toggle-btn {
       width: 34px; height: 34px; border-radius: 50%; 
       background: repeating-radial-gradient(#111 0%, #111 10%, #333 11%, #333 12%);
@@ -771,6 +783,18 @@
       display: flex; flex-direction: column; align-items: center; text-align: center; 
       background: linear-gradient(to top, rgba(212, 175, 55, 0.05) 0%, rgba(8, 6, 7, 0) 100%);
     }
+    /* Wax Envelope */
+    .wax-envelope-wrapper { display: flex; justify-content: center; align-items: center; cursor: pointer; padding: 40px; }
+    .wax-envelope { position: relative; width: 300px; height: 200px; background: #B22234; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 40px rgba(0,0,0,0.3); transition: all 0.5s ease; }
+    .wax-envelope::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%); }
+    .wax-flap { position: absolute; top: 0; left: 0; border-left: 150px solid transparent; border-right: 150px solid transparent; border-top: 110px solid #8B1A28; transform-origin: top; transition: transform 1s ease, opacity 0.5s; z-index: 2; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.4)); }
+    .wax-seal { position: absolute; top: 110px; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: radial-gradient(circle at 30% 30%, #ffd700, #b8860b); border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.5); z-index: 3; display: flex; justify-content: center; align-items: center; transition: all 0.5s ease; border: 2px solid #8b6508; }
+    .seal-initial { font-family: var(--font-script); color: #4a3600; font-size: 1.8rem; text-shadow: 1px 1px 0px rgba(255,255,255,0.5); }
+    .envelope-hint { position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--text-muted); opacity: 0.7; width: 200px; text-align: center; }
+    .wax-envelope-wrapper:hover .wax-envelope { transform: translateY(-10px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.9); }
+    .wax-envelope.open .wax-flap { transform: rotateX(180deg); opacity: 0; }
+    .wax-envelope.open .wax-seal { opacity: 0; transform: translate(-50%, 50px) scale(0); }
+    
     .letter-container { max-width: 900px; width: 100%; }
     
     .letter-card {
@@ -964,6 +988,20 @@
     }
     .back-to-top.show { opacity: 1; visibility: visible; }
     .back-to-top:hover { background: var(--accent-aurora); color: #000; transform: translateY(-3px); box-shadow: 0 0 15px var(--accent-aurora-glow); }
+
+    /* Hidden Reasons Secret Star */
+    .secret-star { position: fixed; top: 1.5rem; left: 1.5rem; font-size: 1.5rem; cursor: pointer; z-index: 100; animation: pulseStar 2.5s infinite alternate; filter: drop-shadow(0 0 12px rgba(229,178,123,0.9)); transition: transform 0.4s ease; user-select: none; }
+    .secret-star:hover { transform: scale(1.3) rotate(20deg); filter: drop-shadow(0 0 20px rgba(229,178,123,1)); }
+    @keyframes pulseStar { 0% { opacity: 0.3; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+    
+    .reasons-modal { position: fixed; inset: 0; background: rgba(18, 14, 16, 0.98); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.8s ease; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .reasons-modal.active { opacity: 1; pointer-events: auto; }
+    .close-reasons { position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: var(--accent-aurora); font-size: 3rem; font-weight: 300; cursor: pointer; transition: transform 0.3s; z-index: 2001; }
+    .close-reasons:hover { transform: rotate(90deg) scale(1.1); }
+    
+    .reasons-carousel { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .reason-slide { position: absolute; font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 4rem); color: var(--accent-aurora); text-align: center; font-style: italic; font-weight: 300; max-width: 80%; line-height: 1.3; opacity: 0; transform: translateY(30px) scale(0.95); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; }
+    .reason-slide.active { opacity: 1; transform: translateY(0) scale(1); }
 
     /* ==========================================================================
        9. LIGHTBOX MODAL WITH SLIDESHOW
@@ -1612,7 +1650,17 @@
       <h2 id="epilogue-title" class="sh-title text-reveal">The Epilogue</h2>
     </header>
     
-    <div class="letter-container">
+    <div class="wax-envelope-wrapper text-reveal" id="waxEnvelope">
+      <div class="wax-envelope">
+        <div class="wax-flap"></div>
+        <div class="wax-seal">
+          <span class="seal-initial">H</span>
+        </div>
+        <span class="envelope-hint">Click to break the seal</span>
+      </div>
+    </div>
+    
+    <div class="letter-container" id="epilogueLetter" style="display: none; opacity: 0; transform: translateY(20px);">
       <div class="letter-card text-reveal">
         <p class="letter-paragraph">
           My love, I have often tried to find the words to measure something as infinite as what I feel for you, only to realize that language falls short. I only know that the world became remarkably softer, brighter, and infinitely more beautiful the very moment you entered it.
@@ -1679,6 +1727,9 @@
     </div>
 
     <div class="audio-controls">
+      <div class="audio-visualizer" aria-hidden="true">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </div>
       <button class="audio-toggle-btn" id="playBtn" aria-label="Play or pause cinematic score" type="button">
         <svg id="playIcon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
       </button>
@@ -1710,6 +1761,16 @@
 
   <!-- Floating Back To Top Button -->
   <button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">&#8593;</button>
+
+  <!-- 9. HIDDEN REASONS STAR (EASTER EGG) -->
+  <div class="secret-star" id="secretStar" aria-label="A secret just for you" title="Click to reveal a secret">✨</div>
+  
+  <div class="reasons-modal" id="reasonsModal">
+    <button class="close-reasons" id="closeReasons" aria-label="Close">&times;</button>
+    <div class="reasons-carousel" id="reasonsCarousel">
+      <!-- Injected by JS -->
+    </div>
+  </div>
 
   <!-- Audio Element -->
   <audio id="audio" src="Katy Perry - Unconditionally (Audio).mp3" loop preload="auto"></audio>
@@ -2006,6 +2067,87 @@
       setTimeout(() => {
         lanternContainer.remove();
       }, duration * 1000);
+    });
+    // --- 9. HIDDEN REASONS STAR (EASTER EGG) ---
+    const secretStar = document.getElementById('secretStar');
+    const reasonsModal = document.getElementById('reasonsModal');
+    const closeReasons = document.getElementById('closeReasons');
+    const reasonsCarousel = document.getElementById('reasonsCarousel');
+    
+    const secretReasons = [
+      "Because your smile is my favorite constellation.",
+      "For the way you understand the silence between my words.",
+      "Because you make the ordinary feel incredibly extraordinary.",
+      "For choosing me, every single day without hesitation.",
+      "Because you are my calm in the chaos.",
+      "For the warmth of your hand in mine.",
+      "Because in your eyes, I found my forever home."
+    ];
+    
+    let reasonIndex = 0;
+    let reasonTimer = null;
+    
+    function showNextReason() {
+      const slides = document.querySelectorAll('.reason-slide');
+      slides.forEach(s => s.classList.remove('active'));
+      reasonIndex = (reasonIndex + 1) % secretReasons.length;
+      slides[reasonIndex].classList.add('active');
+    }
+    
+    if(secretStar && reasonsModal) {
+      // Build slides
+      secretReasons.forEach((text, i) => {
+        const slide = document.createElement('div');
+        slide.className = `reason-slide ${i === 0 ? 'active' : ''}`;
+        slide.textContent = text;
+        reasonsCarousel.appendChild(slide);
+      });
+      
+      secretStar.addEventListener('click', () => {
+        reasonsModal.classList.add('active');
+        reasonIndex = 0;
+        document.querySelectorAll('.reason-slide').forEach((s, i) => {
+          if(i===0) s.classList.add('active'); else s.classList.remove('active');
+        });
+        reasonTimer = setInterval(showNextReason, 4000); // Change every 4s
+      });
+      
+      closeReasons.addEventListener('click', () => {
+        reasonsModal.classList.remove('active');
+        clearInterval(reasonTimer);
+      });
+    }
+
+    // --- 10. WAX ENVELOPE REVEAL ---
+    const waxEnvelopeWrap = document.getElementById('waxEnvelope');
+    const epilogueLetter = document.getElementById('epilogueLetter');
+    if(waxEnvelopeWrap && epilogueLetter) {
+      waxEnvelopeWrap.addEventListener('click', () => {
+        const envelope = waxEnvelopeWrap.querySelector('.wax-envelope');
+        envelope.classList.add('open');
+        setTimeout(() => {
+          gsap.to(waxEnvelopeWrap, { opacity: 0, height: 0, duration: 0.8, onComplete: () => {
+            waxEnvelopeWrap.style.display = 'none';
+            epilogueLetter.style.display = 'block';
+            gsap.to(epilogueLetter, { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" });
+          }});
+        }, 800);
+      });
+    }
+
+    // --- MAGNETIC LUXURY BUTTONS ---
+    const magneticBtns = document.querySelectorAll('.hero-primary-btn, .hero-secondary-btn, .gk-btn, .bucket-item');
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        if(window.innerWidth < 768) return;
+        const rect = btn.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
+        const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+        gsap.to(btn, { x: x, y: y, duration: 0.4, ease: "power2.out" });
+      });
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" });
+      });
     });
 
     // --- CINEMATIC 3D TILT ---
