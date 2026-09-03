@@ -1993,7 +1993,8 @@
       lanternContainer.appendChild(lanternBody);
       lanternContainer.appendChild(lanternTag);
       
-      const startX = 10 + Math.random() * 80;
+      // Spawn closer to the center of the screen
+      const startX = 30 + Math.random() * 40; // 30vw to 70vw
       lanternContainer.style.left = `${startX}vw`;
       
       const duration = 12 + Math.random() * 6;
