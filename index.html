@@ -109,12 +109,12 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg-primary); }
     ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.35); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-aurora); }
 
     /* Reading Progress Bar */
     #scroll-progress {
       position: fixed; top: 0; left: 0; height: 3px;
-      background: linear-gradient(90deg, var(--accent-gold), var(--accent-rose), var(--accent-gold-light));
+      background: linear-gradient(90deg, var(--accent-aurora), var(--accent-rose), var(--accent-aurora));
       z-index: 9999; width: 0%; transition: width 0.1s linear;
       box-shadow: 0 0 10px var(--accent-glow);
     }
@@ -134,7 +134,7 @@
     /* Interactive Sparkle Trail */
     .starlight-spark {
       position: fixed; pointer-events: none; border-radius: 50%;
-      background: radial-gradient(circle, var(--accent-gold-light) 0%, rgba(212, 175, 55, 0) 70%);
+      background: radial-gradient(circle, var(--accent-aurora) 0%, rgba(212, 175, 55, 0) 70%);
       transform: translate(-50%, -50%); z-index: 99999;
       animation: sparkFade 0.7s linear forwards;
     }
@@ -163,9 +163,9 @@
       transition: opacity 1.2s var(--ease-lux), visibility 1.2s;
     }
     .preloader-monogram {
-      width: 70px; height: 70px; border: 1px solid var(--accent-gold); border-radius: 50%;
+      width: 70px; height: 70px; border: 1px solid var(--accent-aurora); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-serif); font-size: 1.8rem; font-style: italic; color: var(--accent-gold);
+      font-family: var(--font-serif); font-size: 1.8rem; font-style: italic; color: var(--accent-aurora);
       box-shadow: 0 0 30px var(--accent-glow);
       animation: pulseMonogram 2.4s infinite ease-in-out;
     }
@@ -178,7 +178,7 @@
       letter-spacing: 0.25em;
     }
     .preloader-sub {
-      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.5em; color: var(--accent-gold); opacity: 0.8;
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.5em; color: var(--accent-aurora); opacity: 0.8;
     }
 
     /* Gatekeeper Screen */
@@ -212,7 +212,7 @@
     .gk-card:hover { border-color: rgba(229, 178, 123, 0.4); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 80px rgba(229, 178, 123, 0.2); transform: translateY(-5px); }
     .gk-badge { 
       font-family: var(--font-sans); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.45em; 
-      color: var(--accent-gold); padding: 6px 18px; border: 1px solid var(--line-gold); border-radius: 50px;
+      color: var(--accent-aurora); padding: 6px 18px; border: 1px solid var(--line-gold); border-radius: 50px;
       background: rgba(212, 175, 55, 0.05);
     }
     .gk-title { font-family: var(--font-serif); font-size: clamp(2.6rem, 5vw, 3.8rem); font-weight: 300; letter-spacing: 0.03em; font-style: italic; line-height: 1.1; }
@@ -225,9 +225,9 @@
       color: var(--text-primary); font-family: var(--font-sans); font-size: 1.35rem; letter-spacing: 0.7em;
       text-align: center; width: 100%; padding: 12px 0; background: transparent;
       border-bottom: 1.5px solid rgba(212, 175, 55, 0.3); transition: all 0.4s var(--ease-smooth);
-      caret-color: var(--accent-gold);
+      caret-color: var(--accent-aurora);
     }
-    .gk-input:focus { border-bottom-color: var(--accent-gold); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2); }
+    .gk-input:focus { border-bottom-color: var(--accent-aurora); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2); }
     .gk-input::placeholder { color: rgba(249, 246, 240, 0.2); letter-spacing: 0.35em; font-size: 0.75rem; }
 
     .gk-actions { display: flex; flex-direction: column; align-items: center; gap: 0.85rem; margin-top: 1rem; width: 100%; }
@@ -453,12 +453,12 @@
     
     .forever-hero-banner {
       font-family: var(--font-serif); font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.1; font-weight: 300; font-style: italic;
-      background: linear-gradient(135deg, var(--text-primary), var(--accent-gold-light), var(--accent-rose));
+      background: linear-gradient(135deg, var(--text-primary), var(--accent-aurora), var(--accent-rose));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       margin-bottom: 0.5rem;
     }
     .forever-hero-sub {
-      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--accent-gold);
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--accent-aurora);
     }
 
     /* Live Real-Time Counter Box */
@@ -511,13 +511,13 @@
       padding: 1rem; border-radius: 10px; background: rgba(20, 16, 17, 0.4);
       border: 1px solid var(--line-delicate); display: flex; flex-direction: column; gap: 0.3rem; text-align: center;
     }
-    .mile-badge-val { font-family: var(--font-serif); font-size: 1.3rem; color: var(--accent-gold); font-weight: 500; font-style: italic; }
+    .mile-badge-val { font-family: var(--font-serif); font-size: 1.3rem; color: var(--accent-aurora); font-weight: 500; font-style: italic; }
     .mile-badge-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); }
 
     .mile-text {
       margin-top: clamp(3rem, 6vh, 4.5rem); max-width: 820px; font-size: clamp(1.05rem, 1.4vw, 1.25rem); line-height: 2.1; font-weight: 300; color: var(--text-primary);
     }
-    .mile-text strong { font-weight: 400; color: var(--accent-gold); font-style: italic; font-family: var(--font-serif); font-size: 1.25em; }
+    .mile-text strong { font-weight: 400; color: var(--accent-aurora); font-style: italic; font-family: var(--font-serif); font-size: 1.25em; }
 
     /* --- 3. "OUR JOURNEY" CHAPTER TIMELINE --- */
     .timeline-section { position: relative; overflow-x: hidden; }
@@ -709,15 +709,15 @@
       backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       transition: all 0.3s ease; cursor: pointer; user-select: none;
     }
-    .bucket-item:hover { border-color: var(--accent-gold); transform: translateX(6px); background: var(--bg-card-hover); }
+    .bucket-item:hover { border-color: var(--accent-aurora); transform: translateX(6px); background: var(--bg-card-hover); }
     .bucket-item.checked { border-color: rgba(212, 175, 55, 0.5); background: rgba(212, 175, 55, 0.08); }
     
     .bucket-checkbox {
-      width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--accent-gold);
+      width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--accent-aurora);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
       transition: all 0.3s ease;
     }
-    .bucket-item.checked .bucket-checkbox { background: var(--accent-gold); }
+    .bucket-item.checked .bucket-checkbox { background: var(--accent-aurora); }
     .bucket-checkbox svg { width: 12px; height: 12px; fill: var(--bg-primary); opacity: 0; transform: scale(0.5); transition: all 0.2s ease; }
     .bucket-item.checked .bucket-checkbox svg { opacity: 1; transform: scale(1); }
 
@@ -733,7 +733,7 @@
       border: 1px solid var(--line-gold); color: var(--text-primary); font-size: 0.88rem;
       transition: border-color 0.3s ease;
     }
-    .wish-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 20px var(--accent-glow); }
+    .wish-input:focus { border-color: var(--accent-aurora); box-shadow: 0 0 20px var(--accent-glow); }
     .wish-input::placeholder { color: var(--text-dim); }
     .add-wish-btn {
       padding: 14px 28px; border-radius: 50px; background: linear-gradient(135deg, var(--accent-purple), var(--accent-aurora));
