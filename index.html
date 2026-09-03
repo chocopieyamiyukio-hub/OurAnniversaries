@@ -801,7 +801,7 @@
     
     .author-frame { 
       width: clamp(130px, 16vw, 160px); aspect-ratio: 1; margin: 0 auto 2rem; 
-      overflow: hidden; border-radius: 50%; clip-path: inset(100% 0 0 0); 
+      overflow: hidden; border-radius: 50%; 
       border: 3px solid var(--bg-primary); 
       outline: 2px solid var(--accent-aurora); outline-offset: 4px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 40px var(--accent-aurora-glow);
@@ -1033,7 +1033,7 @@
         scroll-behavior: auto !important;
       }
       .film-grain, #ambient-canvas { display: none; }
-      .hero-img-wrap, .author-frame { clip-path: inset(0 0 0 0) !important; }
+      .hero-img-wrap { clip-path: inset(0 0 0 0) !important; }
       .gallery-item:hover { transform: none; }
     }
     /* ==========================================================================
@@ -1569,7 +1569,7 @@
       </div>
       
       <div class="signature-block">
-        <div class="author-frame img-reveal">
+        <div class="author-frame text-reveal">
           <img src="memory1.jpg" alt="Portrait of Us" class="plx-img" loading="lazy" width="200" height="200" />
         </div>
         <svg class="sign-off-svg" viewBox="0 0 400 100" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
