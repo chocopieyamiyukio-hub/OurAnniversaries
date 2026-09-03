@@ -418,33 +418,6 @@
     }
     .hero-desc { font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.8; color: var(--text-primary); font-weight: 400; margin-top: 0.5rem; max-width: 650px; }
     
-    /* Live Relationship Counter */
-    .live-counter {
-      display: flex; gap: 1.5rem; justify-content: center; align-items: center;
-      margin: 1.5rem 0; padding: 1.5rem 2.5rem;
-      background: rgba(39, 17, 26, 0.4); border: 1px solid rgba(229, 178, 123, 0.2);
-      border-radius: 20px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(178, 34, 52, 0.1);
-      flex-wrap: wrap; max-width: 90%;
-    }
-    .time-block { display: flex; flex-direction: column; align-items: center; min-width: 50px; }
-    .time-num {
-      font-size: 2.2rem; font-family: var(--font-serif); color: var(--accent-aurora);
-      line-height: 1; text-shadow: 0 0 15px rgba(229,178,123,0.6); margin-bottom: 0.4rem;
-    }
-    .time-label {
-      font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.2em;
-      color: var(--text-muted); font-weight: 600;
-    }
-    .time-sep { font-size: 1.8rem; color: var(--line-gold); opacity: 0.4; font-family: var(--font-serif); margin-bottom: 0.8rem; }
-    
-    @media (max-width: 768px) {
-      .live-counter { gap: 0.8rem; padding: 1rem; }
-      .time-num { font-size: 1.4rem; }
-      .time-label { font-size: 0.45rem; letter-spacing: 0.1em; }
-      .time-sep { font-size: 1.2rem; margin-bottom: 0.5rem; }
-    }
-
     .hero-cta-group { display: flex; gap: 1.5rem; justify-content: center; align-items: center; margin-top: 1rem; flex-wrap: wrap; }
     .hero-primary-btn {
       display: inline-flex; align-items: center; gap: 10px; padding: 16px 40px;
@@ -1227,10 +1200,6 @@
         <h1 class="hero-title text-reveal">An Eternity<br><i>In Every Moment.</i></h1>
         <p class="hero-desc text-reveal">A meticulously woven tapestry of our quietest mornings, our brightest laughter, and the beautiful architecture of a love that feels like coming home — today, tomorrow, and through all the years ahead.</p>
         
-        <div class="live-counter text-reveal" id="liveCounter" aria-label="Time we've been together">
-          <!-- Populated by JS -->
-        </div>
-
         <div class="hero-cta-group text-reveal">
           <a href="#journey" class="hero-primary-btn">Explore Our Journey &darr;</a>
           <a href="#gallery" class="hero-secondary-btn">View 20 Memories</a>
@@ -2037,49 +2006,6 @@
         lanternContainer.remove();
       }, duration * 1000);
     });
-
-    // --- LIVE RELATIONSHIP COUNTER ---
-    const counterEl = document.getElementById('liveCounter');
-    const startDate = new Date('2025-06-14T00:00:00');
-    
-    function updateCounter() {
-      if(!counterEl) return;
-      const now = new Date();
-      let years = now.getFullYear() - startDate.getFullYear();
-      let months = now.getMonth() - startDate.getMonth();
-      let days = now.getDate() - startDate.getDate();
-      
-      if (days < 0) {
-        months--;
-        const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += lastMonth.getDate();
-      }
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
-      
-      const hours = now.getHours().toString().padStart(2, '0');
-      const mins = now.getMinutes().toString().padStart(2, '0');
-      const secs = now.getSeconds().toString().padStart(2, '0');
-      
-      let html = '';
-      if(years > 0) html += `<div class="time-block"><span class="time-num">${years}</span><span class="time-label">${years === 1 ? 'Year' : 'Years'}</span></div><div class="time-sep">:</div>`;
-      if(months > 0 || years > 0) html += `<div class="time-block"><span class="time-num">${months}</span><span class="time-label">${months === 1 ? 'Month' : 'Months'}</span></div><div class="time-sep">:</div>`;
-      
-      html += `
-        <div class="time-block"><span class="time-num">${days}</span><span class="time-label">${days === 1 ? 'Day' : 'Days'}</span></div><div class="time-sep">:</div>
-        <div class="time-block"><span class="time-num">${hours}</span><span class="time-label">Hrs</span></div><div class="time-sep">:</div>
-        <div class="time-block"><span class="time-num">${mins}</span><span class="time-label">Min</span></div><div class="time-sep">:</div>
-        <div class="time-block"><span class="time-num">${secs}</span><span class="time-label">Sec</span></div>
-      `;
-      counterEl.innerHTML = html;
-    }
-    
-    if(counterEl) {
-      setInterval(updateCounter, 1000);
-      updateCounter();
-    }
 
     // --- CINEMATIC 3D TILT ---
     const tiltElements = document.querySelectorAll('.gallery-item');
