@@ -850,6 +850,42 @@
     @keyframes floatJar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     .memory-jar-widget span { font-size: 1.2rem; }
 
+    /* Floating Lantern Widget */
+    .lantern-widget {
+      position: fixed; top: 170px; left: 5vw; z-index: 1000;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(229, 178, 123, 0.2), rgba(178, 34, 52, 0.4));
+      border: 1px solid var(--accent-rose); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 0 15px var(--accent-glow);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      animation: floatJar 5s ease-in-out infinite reverse; transition: transform 0.3s;
+    }
+    .lantern-widget:hover { transform: scale(1.15) rotate(-10deg); box-shadow: 0 0 25px var(--accent-rose); }
+    .lantern-widget span { font-size: 1.4rem; filter: drop-shadow(0 0 5px rgba(255,150,100,0.8)); }
+
+    /* Floating Lantern Animation Element */
+    .sky-lantern {
+      position: fixed; bottom: -100px; z-index: 99999;
+      width: 40px; height: 50px; background: rgba(255, 230, 200, 0.95);
+      border-radius: 20px 20px 10px 10px;
+      box-shadow: 0 0 40px rgba(255, 150, 50, 0.9), inset 0 -15px 25px rgba(255, 80, 0, 0.7);
+      display: flex; align-items: center; justify-content: center;
+      color: #4a2015; font-size: 0.9rem; font-family: var(--font-script); font-weight: bold;
+      pointer-events: none; opacity: 0;
+      animation: flyLantern 15s ease-in forwards;
+    }
+    .sky-lantern::after {
+      content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+      width: 12px; height: 10px; background: #ff5500;
+      border-radius: 0 0 5px 5px; box-shadow: 0 5px 20px #ff2200, 0 10px 30px #ffaa00;
+    }
+    @keyframes flyLantern {
+      0% { transform: translateY(0) scale(0.5) rotate(-5deg); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: translateY(-50vh) translateX(60px) scale(1.2) rotate(5deg); opacity: 1; }
+      100% { transform: translateY(-120vh) translateX(-60px) scale(0.8) rotate(-5deg); opacity: 0; }
+    }
+
     /* Memory Jar Modal */
     .jar-modal {
       position: fixed; inset: 0; z-index: 80000; background: rgba(8, 6, 12, 0.95);
@@ -1632,6 +1668,11 @@
     <span>✨</span>
   </div>
 
+  <!-- Floating Lantern Widget -->
+  <div class="lantern-widget" id="lanternWidget" title="Release a Wish">
+    <span>🏮</span>
+  </div>
+
   <!-- Memory Jar Modal -->
   <div class="jar-modal" id="jarModal">
     <div class="jar-content">
@@ -1903,6 +1944,56 @@
         jarText.textContent = sweetMemories[Math.floor(Math.random() * sweetMemories.length)];
         jarPaper.classList.add('open');
       }, 600);
+    });
+
+    // --- FLOATING LANTERN WISH LOGIC ---
+    const lanternWidget = document.getElementById('lanternWidget');
+    const wishes = [
+      "I wish for endless sunsets with you.",
+      "May our laughter never fade.",
+      "Wishing for a lifetime of your hand in mine.",
+      "May every tomorrow be as beautiful as today.",
+      "Wishing you the happiest anniversary, my love.",
+      "I wish to wake up next to you forever.",
+      "May our love grow deeper with every passing year."
+    ];
+    
+    lanternWidget.addEventListener('click', () => {
+      const lantern = document.createElement('div');
+      lantern.className = 'sky-lantern';
+      lantern.textContent = wishes[Math.floor(Math.random() * wishes.length)];
+      
+      const startX = 10 + Math.random() * 80;
+      lantern.style.left = `${startX}vw`;
+      
+      const duration = 12 + Math.random() * 6;
+      lantern.style.animationDuration = `${duration}s`;
+      
+      document.body.appendChild(lantern);
+      
+      setTimeout(() => {
+        lantern.remove();
+      }, duration * 1000);
+    });
+
+    // --- CINEMATIC 3D TILT ---
+    const tiltElements = document.querySelectorAll('.gallery-item');
+    tiltElements.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        if(window.innerWidth < 768) return; // Disable on mobile
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -12; // Max 12deg tilt
+        const rotateY = ((x - centerX) / centerX) * 12;
+        
+        el.style.transform = `perspective(1000px) scale(1.05) translateY(-5px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = ''; // Let CSS take over
+      });
     });
 
     mobileMenuBtn.addEventListener('click', () => {
